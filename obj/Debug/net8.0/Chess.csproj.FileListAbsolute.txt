@@ -1,0 +1,32 @@
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.csproj.AssemblyReference.cache
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.AssemblyInfoInputs.cache
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.AssemblyInfo.cs
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.csproj.CoreCompileInputs.cache
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\AvailableMoveDot.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\Black\BBishop.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\Black\BKing.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\Black\BKnight.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\Black\BPawn.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\Black\BQueen.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\Black\BRook.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\White\WBishop.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\White\WKing.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\White\WKnight.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\White\WPawn.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\White\WQueen.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Piece Images\White\WRook.png
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Openings.txt
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Chess.exe
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Chess.deps.json
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Chess.runtimeconfig.json
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Chess.dll
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\Chess.pdb
+C:\Users\duong\Documents\ChessCSharp-main\Current\bin\Debug\net8.0\SplashKitSDK.dll
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.csproj.Up2Date
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.dll
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\refint\Chess.dll
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.pdb
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.genruntimeconfig.cache
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\ref\Chess.dll
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net8.0\Chess.sourcelink.json

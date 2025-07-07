@@ -1,0 +1,10 @@
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.csproj.AssemblyReference.cache
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.GameWindow.resources
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.Menu.resources
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.Options.resources
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.Properties.Resources.resources
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.csproj.GenerateResource.cache
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.AssemblyInfoInputs.cache
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.AssemblyInfo.cs
+C:\Users\duong\Documents\ChessCSharp-main\Current\obj\Debug\net6.0\Chess.csproj.CoreCompileInputs.cache

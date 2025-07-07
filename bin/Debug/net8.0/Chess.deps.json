@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Chess/1.0.0": {
+        "dependencies": {
+          "SplashKit": "1.2.11"
+        },
+        "runtime": {
+          "Chess.dll": {}
+        }
+      },
+      "SplashKit/1.2.11": {
+        "runtime": {
+          "lib/net8.0/SplashKitSDK.dll": {
+            "assemblyVersion": "1.2.11.0",
+            "fileVersion": "1.2.11.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Chess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SplashKit/1.2.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-p807T7MelPdjDg6vnMCxvRrWVUtcmQZ+8lGorlc+ls4gUpDaQp+L6lhmyzg7uxH7e5xZfWtZVqUpCFBBs8uDSw==",
+      "path": "splashkit/1.2.11",
+      "hashPath": "splashkit.1.2.11.nupkg.sha512"
+    }
+  }
+}

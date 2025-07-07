@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "psc8vrNcLao=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\duong\\Documents\\ChessCSharp-main\\Current\\Chess.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\duong\\.nuget\\packages\\splashkit\\1.2.11\\splashkit.1.2.11.nupkg.sha512"
+  ],
+  "logs": []
+}
