@@ -6,7 +6,7 @@ namespace Chess
 {
     public class GameControl
     {
-        public static BoardSquare[] Board;
+        public static BoardSquare[] Board = new BoardSquare[64];
 
         public static bool gameEnded = false;
         public static int sideToMove = 8;
@@ -16,12 +16,8 @@ namespace Chess
         public static bool SinglePlayer = false; // checked to see if playing against computer of friend
         public static int NoGames = 0;
 
-        // SplashKit doesn't use Timer objects, timing is handled in main game loop
-        private static uint lastSecond = 0;
-
         public GameControl() 
         {
-            Board = new BoardSquare[64];
         }
 
         public static void Initialize()
@@ -40,9 +36,9 @@ namespace Chess
                 
                 // Set checkerboard colors
                 if ((row + col) % 2 == 0)
-                    Board[i].BackgroundColor = SplashKit.ColorWhite(); // White squares
+                    Board[i].BackgroundColor = SplashKit.RGBColor(240, 217, 181);
                 else
-                    Board[i].BackgroundColor = SplashKit.ColorBrown(); // Brown squares
+                    Board[i].BackgroundColor = SplashKit.RGBColor(181, 136, 99);
             }
             
             // Initialize distance from edges calculation (required for legal move generation)
@@ -493,9 +489,9 @@ namespace Chess
                 if (Board[i] != null)
                 {
                     if ((row + col) % 2 == 0)
-                        Board[i].BackgroundColor = SplashKit.ColorWhite(); // White squares
+                        Board[i].BackgroundColor = SplashKit.RGBColor(240, 217, 181);
                     else
-                        Board[i].BackgroundColor = SplashKit.ColorBrown(); // Brown squares
+                        Board[i].BackgroundColor = SplashKit.RGBColor(181, 136, 99);
                 }
             }
             

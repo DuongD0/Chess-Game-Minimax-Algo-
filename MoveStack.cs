@@ -102,14 +102,17 @@ namespace Chess
         public static void Push(Move move) // Add move to move stack
         {
             moveStack.Add(move);
+            string notation = MoveToDescriptiveNotation(move);
             
-            // Update move display
-            GameState.UpdateMoveDisplay(MoveToDescriptiveNotation(move));
+            // Log move to CSV
+            int moveNumber = (moveStack.Count + 1) / 2;
+            CsvMoveLogger.LogMove(moveNumber, move, notation);
         }
         
         // Clear the move stack for new games
         public static void Clear()
         {
+            CsvMoveLogger.Flush();
             moveStack.Clear();
             PoppedMoves.Clear();
         }

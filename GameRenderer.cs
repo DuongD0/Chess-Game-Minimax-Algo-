@@ -6,7 +6,7 @@ namespace Chess
 {
     public class GameRenderer
     {
-        // Board constants - made smaller for better screen fitting
+        // Board constants
         private const int TILE_SIZE = 75;
         private const int BOARD_START_X = 40;
         private const int BOARD_START_Y = 40;
@@ -45,17 +45,19 @@ namespace Chess
         public Rectangle ResignButton { get; private set; }
         public Rectangle MenuFromGameButton { get; private set; }
         public Rectangle BackButton { get; private set; }
+        public Rectangle Player1NameBox { get; private set; }
+        public Rectangle Player2NameBox { get; private set; }
+        public Rectangle TimeUpButton { get; private set; }
+        public Rectangle TimeDownButton { get; private set; }
+        public Rectangle TimeToggleButton { get; private set; }
+        public Rectangle FenInputBox { get; private set; }
         
         private Font _gameFont;
         
         public GameRenderer()
         {
             LoadPieceImages();
-            _gameFont = SplashKit.LoadFont("Roboto-Bold", "Roboto-Bold.ttf");
-             if (_gameFont == null)
-            {
-                _gameFont = SplashKit.LoadFont("Default", "arial.ttf");
-            }
+            _gameFont = SplashKit.LoadFont("Default", "arial.ttf");
             MenuButton1 = new Rectangle();
             MenuButton2 = new Rectangle();
             MenuButton3 = new Rectangle();
@@ -63,6 +65,12 @@ namespace Chess
             ResignButton = new Rectangle();
             MenuFromGameButton = new Rectangle();
             BackButton = new Rectangle();
+            Player1NameBox = new Rectangle();
+            Player2NameBox = new Rectangle();
+            TimeUpButton = new Rectangle();
+            TimeDownButton = new Rectangle();
+            TimeToggleButton = new Rectangle();
+            FenInputBox = new Rectangle();
         }
         
         private void LoadPieceImages()
@@ -123,29 +131,79 @@ namespace Chess
             DrawCleanBackground(window);
             
             double centerX = window.Width / 2;
-            DrawTextWithShadow("GAME OPTIONS", 32, centerX - 100, 60, ACCENT_COLOR, SplashKit.ColorBlack(), window);
+            DrawTextWithShadow("GAME OPTIONS", 36, centerX - 120, 50, ACCENT_COLOR, SplashKit.ColorBlack(), window);
             
-            double panelX = 80;
-            double panelY = 120;
-            double panelWidth = window.Width - 160;
-            double panelHeight = 350;
+            double panelX = 100;
+            double panelY = 110;
+            double panelWidth = window.Width - 200;
+            double panelHeight = 520;
             
             DrawPanel(panelX, panelY, panelWidth, panelHeight, window);
             
-            double contentX = panelX + 30;
-            double contentY = panelY + 30;
-            double lineHeight = 45;
+            double contentX = panelX + 40;
+            double currentY = panelY + 30;
             
-            DrawText($"Player 1: {GameState.Player1Name}", 18, contentX, contentY, TEXT_PRIMARY, window);
-            DrawText($"Player 2: {GameState.Player2Name}", 18, contentX, contentY + lineHeight, TEXT_PRIMARY, window);
-            DrawText($"Time Control: {GameState.TimeControl} seconds", 18, contentX, contentY + lineHeight * 2, TEXT_PRIMARY, window);
+            double sectionPadding = 65;
+            double itemPadding = 50;
+            double rowHeight = 40;
+
+            // --- Player Settings ---
+            DrawSectionHeader("Player Settings", contentX, currentY, window);
+            currentY += 50;
             
-            DrawText("Starting Position (FEN):", 18, contentX, contentY + lineHeight * 3.5, TEXT_PRIMARY, window);
-            DrawText(FenStringUtility.InputedPostion.Substring(0, Math.Min(60, FenStringUtility.InputedPostion.Length)), 
-                    12, contentX, contentY + lineHeight * 4, TEXT_SECONDARY, window);
+            if (pieceImages != null && _gameFont != null)
+            {
+                // Player 1 Row
+                DrawText("Player 1:", 16, contentX + 50, currentY + (rowHeight - SplashKit.TextHeight("Player 1:", _gameFont, 16)) / 2, TEXT_PRIMARY, window);
+                window.DrawBitmap(pieceImages["WKing"], contentX, currentY + (rowHeight - pieceImages["WKing"].Height * 0.6) / 2 - 20, SplashKit.OptionScaleBmp(0.6, 0.6));
+                Player1NameBox = new Rectangle() { X = contentX + 150, Y = currentY + (rowHeight - 35) / 2, Width = panelWidth - 240, Height = 35 };
+                DrawTextInputBox(GameState.Player1Name, Player1NameBox, TextInputManager.ActiveField.Player1, window);
+                currentY += itemPadding;
+
+                // Player 2 Row
+                DrawText("Player 2:", 16, contentX + 50, currentY + (rowHeight - SplashKit.TextHeight("Player 2:", _gameFont, 16)) / 2, TEXT_PRIMARY, window);
+                window.DrawBitmap(pieceImages["BKing"], contentX, currentY + (rowHeight - pieceImages["BKing"].Height * 0.6) / 2 - 20, SplashKit.OptionScaleBmp(0.6, 0.6));
+                Player2NameBox = new Rectangle() { X = contentX + 150, Y = currentY + (rowHeight - 35) / 2, Width = panelWidth - 240, Height = 35 };
+                DrawTextInputBox(GameState.Player2Name, Player2NameBox, TextInputManager.ActiveField.Player2, window);
+            }
             
-            BackButton = new Rectangle() { X = contentX, Y = contentY + lineHeight * 5.5, Width = 180, Height = 40 };
-            DrawMenuButton("Back to Menu (ESC)", BackButton, BUTTON_NORMAL, window);
+            // --- Time Control ---
+            currentY += sectionPadding;
+            DrawSectionHeader("Time Control", contentX, currentY, window);
+            currentY += 50;
+
+            TimeToggleButton = new Rectangle() { X = contentX, Y = currentY + (rowHeight - 35) / 2, Width = 230, Height = 35 };
+            DrawMenuButton(GameState.TimeControlEnabled ? "Time Control: Enabled" : "Time Control: Disabled", TimeToggleButton, BUTTON_NORMAL, window);
+
+            if (GameState.TimeControlEnabled && _gameFont != null)
+            {
+                string timeText = $"{GameState.TimeControl / 60}:{GameState.TimeControl % 60:D2}";
+                TimeDownButton = new Rectangle() { X = contentX + 350, Y = currentY + (rowHeight - 35) / 2, Width = 35, Height = 35 };
+                DrawMenuButton("-", TimeDownButton, BUTTON_NORMAL, window);
+
+                DrawText(timeText, 28, contentX + 405, currentY + (rowHeight - SplashKit.TextHeight(timeText, _gameFont, 28))/2, ACCENT_COLOR, window);
+                
+                TimeUpButton = new Rectangle() { X = contentX + 480, Y = currentY + (rowHeight - 35) / 2, Width = 35, Height = 35 };
+                DrawMenuButton("+", TimeUpButton, BUTTON_NORMAL, window);
+            }
+
+            // --- FEN Settings ---
+            currentY += sectionPadding;
+            DrawSectionHeader("Starting Position (FEN)", contentX, currentY, window);
+            currentY += 50;
+            
+            FenInputBox = new Rectangle() { X = contentX, Y = currentY, Width = panelWidth - 80, Height = 60 };
+            DrawTextInputBox(FenStringUtility.InputedPostion, FenInputBox, TextInputManager.ActiveField.FEN, window);
+
+            // --- Back Button ---
+            BackButton = new Rectangle() { X = centerX - 100, Y = panelY + panelHeight - 60, Width = 200, Height = 40 };
+            DrawMenuButton("Back to Menu", BackButton, BUTTON_NORMAL, window);
+        }
+        
+        private void DrawSectionHeader(string title, double x, double y, Window window)
+        {
+            DrawText(title, 20, x, y, ACCENT_COLOR, window);
+            window.FillRectangle(PANEL_BORDER, x, y + 28, 300, 2);
         }
         
         public void DrawGame(Window window)
@@ -302,7 +360,7 @@ namespace Chess
             Color playerColor = GameControl.sideToMove == 8 ? SplashKit.ColorWhite() : SplashKit.ColorBlack();
             
             DrawText("Current Player:", 14, contentX, contentY, TEXT_SECONDARY, window);
-            float labelWidth = SplashKit.TextWidth("Current Player:", "Roboto-Bold", 14);
+            float labelWidth = SplashKit.TextWidth("Current Player:", _gameFont, 14);
             double indicatorX = contentX + labelWidth + 20;
             window.FillCircle(playerColor, indicatorX, contentY + 8, 8);
             window.DrawCircle(TEXT_PRIMARY, indicatorX, contentY + 8, 8);
@@ -367,10 +425,13 @@ namespace Chess
             DrawText("White", 12, x + 10, y + 5, TEXT_SECONDARY, window);
             DrawText("Black", 12, x + width/2 + 10, y + 5, TEXT_SECONDARY, window);
             
-            int displayMoves = Math.Min(MoveStack.moveStack.Count, 12);
+            int totalMoves = MoveStack.moveStack.Count;
+            int displayLimit = 12; // Max moves to display
+            int startMoveIndex = Math.Max(0, totalMoves - displayLimit);
+
             double moveY = y + 25;
             
-            for (int i = 0; i < displayMoves && moveY < y + listHeight - 15; i++)
+            for (int i = startMoveIndex; i < totalMoves && moveY < y + listHeight - 15; i++)
             {
                 Move move = MoveStack.moveStack[i];
                 string moveText = MoveStack.MoveToDescriptiveNotation(move);
@@ -455,13 +516,17 @@ namespace Chess
         
         private void DrawText(string text, int size, double x, double y, Color color, Window window)
         {
-            window.DrawText(text, color, _gameFont, size, x, y);
+            if (_gameFont != null)
+                window.DrawText(text, color, _gameFont, size, x, y);
         }
         
         private void DrawTextWithShadow(string text, int size, double x, double y, Color textColor, Color shadowColor, Window window)
         {
-            window.DrawText(text, shadowColor, _gameFont, size, x + 1, y + 1);
-            window.DrawText(text, textColor, _gameFont, size, x, y);
+            if (_gameFont != null)
+            {
+                window.DrawText(text, shadowColor, _gameFont, size, x + 1, y + 1);
+                window.DrawText(text, textColor, _gameFont, size, x, y);
+            }
         }
         
         private string GetPieceImageName(int piece)
@@ -527,6 +592,26 @@ namespace Chess
         {
             if (GameControl.Board[square] != null)
                 GameControl.Board[square].BackgroundColor = SELECTED_SQUARE;
+        }
+
+        private void DrawTextInputBox(string text, Rectangle rect, TextInputManager.ActiveField field, Window window)
+        {
+            window.FillRectangle(SplashKit.RGBColor(30, 30, 30), rect.X, rect.Y, rect.Width, rect.Height);
+            window.DrawRectangle(PANEL_BORDER, rect.X, rect.Y, rect.Width, rect.Height);
+
+            bool isActive = TextInputManager.CurrentField == field;
+            string displayText = isActive ? TextInputManager.CurrentText : text;
+
+            DrawText(displayText, 16, rect.X + 10, rect.Y + 8, TEXT_PRIMARY, window);
+
+            if (isActive && TextInputManager.ShouldDrawCursor())
+            {
+                if (_gameFont != null)
+                {
+                    float textWidth = SplashKit.TextWidth(displayText, _gameFont, 16);
+                    window.FillRectangle(TEXT_PRIMARY, rect.X + 10 + textWidth, rect.Y + 6, 2, rect.Height - 12);
+                }
+            }
         }
     }
 } 

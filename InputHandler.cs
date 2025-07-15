@@ -77,15 +77,49 @@ namespace Chess
         
         public void UpdateOptions()
         {
-            if (SplashKit.KeyTyped(KeyCode.EscapeKey))
-            {
-                _chessGame.GoToState(GameStateEnum.Menu);
-            }
-            
+            TextInputManager.Update();
+
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
             {
                 Point2D mousePos = SplashKit.MousePosition();
-                HandleOptionsClick(mousePos);
+                
+                if (SplashKit.PointInRectangle(mousePos, _renderer.BackButton))
+                {
+                    _chessGame.GoToState(GameStateEnum.Menu);
+                }
+                else if (SplashKit.PointInRectangle(mousePos, _renderer.TimeUpButton))
+                {
+                    GameState.SetTimeControl(GameState.TimeControl + 30);
+                }
+                else if (SplashKit.PointInRectangle(mousePos, _renderer.TimeDownButton))
+                {
+                    GameState.SetTimeControl(Math.Max(30, GameState.TimeControl - 30));
+                }
+                else if (SplashKit.PointInRectangle(mousePos, _renderer.TimeToggleButton))
+                {
+                    GameState.ToggleTimeControl(!GameState.TimeControlEnabled);
+                }
+                else if (SplashKit.PointInRectangle(mousePos, _renderer.Player1NameBox))
+                {
+                    TextInputManager.StartReading(TextInputManager.ActiveField.Player1, GameState.Player1Name, (s) => GameState.SetPlayer1Name(s), _renderer.Player1NameBox);
+                }
+                else if (SplashKit.PointInRectangle(mousePos, _renderer.Player2NameBox))
+                {
+                    TextInputManager.StartReading(TextInputManager.ActiveField.Player2, GameState.Player2Name, (s) => GameState.SetPlayer2Name(s), _renderer.Player2NameBox);
+                }
+                else if (SplashKit.PointInRectangle(mousePos, _renderer.FenInputBox))
+                {
+                    TextInputManager.StartReading(TextInputManager.ActiveField.FEN, FenStringUtility.InputedPostion, (s) => FenStringUtility.SetFenString(s), _renderer.FenInputBox);
+                }
+                else
+                {
+                    TextInputManager.StopReading();
+                }
+            }
+            
+            if (SplashKit.KeyTyped(KeyCode.EscapeKey))
+            {
+                _chessGame.GoToState(GameStateEnum.Menu);
             }
         }
         
@@ -119,14 +153,6 @@ namespace Chess
             else if (IsPointInRectangle(mousePos, _renderer.MenuButton4))
             {
                 _chessGame.ExitGame();
-            }
-        }
-        
-        private void HandleOptionsClick(Point2D mousePos)
-        {
-            if (IsPointInRectangle(mousePos, _renderer.BackButton))
-            {
-                _chessGame.GoToState(GameStateEnum.Menu);
             }
         }
         

@@ -29,6 +29,7 @@ namespace Chess
                 gameWindow.Refresh(60);
             }
             
+            chessGame.ExitGame();
             gameWindow.Close();
         }
     }

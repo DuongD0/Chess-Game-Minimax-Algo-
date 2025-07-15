@@ -167,6 +167,7 @@ namespace Chess
         public void ExitGame()
         {
             QuitGame = true;
+            CsvMoveLogger.Flush();
         }
         
         private void StartGame()
@@ -178,6 +179,7 @@ namespace Chess
             MoveStack.Clear(); 
             
             GameControl.Initialize();
+            CsvMoveLogger.Initialize($"chess_moves_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
             
             GameState.InitializeTimers();
             lastSecond = SplashKit.CurrentTicks();

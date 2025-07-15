@@ -8,6 +8,7 @@ namespace Chess
         public static string Player1Name = "Player 1";
         public static string Player2Name = "Player 2";
         public static int TimeControl = 120; // seconds
+        public static bool TimeControlEnabled = true;
         
         // Game timing
         public static int WhiteTimeLeft;
@@ -23,11 +24,36 @@ namespace Chess
         // Initialize timer values based on time control
         public static void InitializeTimers()
         {
-            if (TimeControl > 0)
+            if (TimeControlEnabled && TimeControl > 0)
             {
                 WhiteTimeLeft = TimeControl;
                 BlackTimeLeft = TimeControl;
             }
+            else
+            {
+                WhiteTimeLeft = 0;
+                BlackTimeLeft = 0;
+            }
+        }
+        
+        public static void SetPlayer1Name(string name)
+        {
+            Player1Name = name;
+        }
+
+        public static void SetPlayer2Name(string name)
+        {
+            Player2Name = name;
+        }
+
+        public static void SetTimeControl(int seconds)
+        {
+            TimeControl = seconds;
+        }
+
+        public static void ToggleTimeControl(bool enabled)
+        {
+            TimeControlEnabled = enabled;
         }
         
         // Generate legal moves for current position
